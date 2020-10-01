@@ -1,24 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Weather from './Weather'
-
-export default function App() {
-
+//import liraries
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import Weather from './components/Weather'
+import WeatherScreen from './components/WeatherScreen'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ZipCodeScreen from './components/ZipCodeScreen';
+import CatScreen from './components/CatScreen'
+const Stack = createStackNavigator();
+// create a component
+const App = () => {
   return (
-    <View style={styles.container} >
-       <Weather zipCode="83120" /> 
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={ZipCodeScreen} />
+        <Stack.Screen name="Weather" component={WeatherScreen} />
+        <Stack.Screen name="CatScreen" component={CatScreen} />
+      </Stack.Navigator> 
+    </NavigationContainer>       
   );
-}
-
+};
+// define your styles
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignContent: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center',
-       
-  }
-})
+    flex: 1, 
+  },
+});
+//make this component available to the app
+export default App;
